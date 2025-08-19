@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Runtime.CompilerServices;
 
 public class InputHandler : MonoBehaviour
 {
@@ -9,7 +10,17 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _counter.ToggleCounting();
+           
         }
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
     }
 }

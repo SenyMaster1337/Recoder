@@ -11,8 +11,9 @@ public class Counter : MonoBehaviour
 
     public int Number { get; private set; }
     public event Action NumberChanged;
+    public event Action NumberChanging;
 
-    public void ToggleCounting()
+    private void ToggleCounting()
     {
         if (_isCouning)
         {
@@ -22,6 +23,8 @@ public class Counter : MonoBehaviour
         {
             StartCounting();
         }
+
+        NumberChanging?.Invoke();
     }
 
     private void StartCounting()
