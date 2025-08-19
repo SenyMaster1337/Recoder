@@ -11,7 +11,7 @@ public class Counter : MonoBehaviour
     private bool _isCouning = false;
 
     public int Number { get; private set; }
-    public event Action NumberChanged;
+    public event Action<int> NumberChanged;
 
     private void OnEnable()
     {
@@ -49,11 +49,12 @@ public class Counter : MonoBehaviour
 
     private IEnumerator CountCoroutine()
     {
+        var wait = new WaitForSeconds(_delay);
+
         while (_isCouning)
         {
-            Number++;
-            NumberChanged?.Invoke();
-            yield return new WaitForSeconds(_delay);
+            NumberChanged?.Invoke(Number++);
+            yield return wait;
         }
     }
 }
