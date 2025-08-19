@@ -3,13 +3,13 @@ using System;
 
 public class InputHandler : MonoBehaviour
 {
-    private const int _leftMouseButton = 0;
+    private const int LeftMouseButton = 0;
 
     public event Action Clicked;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(_leftMouseButton))
+        if (Input.GetMouseButtonDown(LeftMouseButton))
         {
            Clicked?.Invoke();
         }
