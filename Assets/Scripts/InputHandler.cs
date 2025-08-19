@@ -4,23 +4,13 @@ using System.Runtime.CompilerServices;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private Counter _counter;
+    public event Action Clicked;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-           
+           Clicked?.Invoke();
         }
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }

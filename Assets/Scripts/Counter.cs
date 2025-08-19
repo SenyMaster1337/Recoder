@@ -5,13 +5,23 @@ using System.Collections;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private float _delay = 0.5f;
+    [SerializeField] private InputHandler _inputHandler;
 
     private Coroutine _countingCoroutine;
     private bool _isCouning = false;
 
     public int Number { get; private set; }
     public event Action NumberChanged;
-    public event Action NumberChanging;
+
+    public void OnEnable()
+    {
+        _inputHandler.Clicked += ToggleCounting;
+    }
+
+    public void OnDisable()
+    {
+        _inputHandler.Clicked -= ToggleCounting;
+    }
 
     private void ToggleCounting()
     {
@@ -23,8 +33,6 @@ public class Counter : MonoBehaviour
         {
             StartCounting();
         }
-
-        NumberChanging?.Invoke();
     }
 
     private void StartCounting()
