@@ -1,5 +1,6 @@
-using System.Collections;
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class Counter : MonoBehaviour
 {
@@ -7,15 +8,10 @@ public class Counter : MonoBehaviour
 
     private Coroutine _countingCoroutine;
     private bool _isCouning = false;
-    private int _number = 0;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ToggleCounting();
-        }
-    }
+    public int Number { get; private set; }
+    public event Action NumberChanged;
+    public event Action NumberChanging;
 
     private void ToggleCounting()
     {
@@ -27,6 +23,8 @@ public class Counter : MonoBehaviour
         {
             StartCounting();
         }
+
+        NumberChanging?.Invoke();
     }
 
     private void StartCounting()
@@ -45,13 +43,10 @@ public class Counter : MonoBehaviour
     {
         for (int i = start; i < int.MaxValue; i++)
         {
-            DisplayCount(_number++);
+            Number++;
             yield return new WaitForSeconds(_delay);
         }
-    }
 
-    private void DisplayCount(int number)
-    {
-        Debug.Log(number.ToString());
+        NumberChanged?.Invoke();
     }
 }
