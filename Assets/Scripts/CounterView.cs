@@ -14,7 +14,7 @@ public class CounterView : MonoBehaviour
         _counter.NumberChanged -= DisplayNumber;
     }
 
-    public void DisplayNumber()
+    private void DisplayNumber()
     {
         Debug.Log(_counter.Number);
     }

@@ -13,12 +13,12 @@ public class Counter : MonoBehaviour
     public int Number { get; private set; }
     public event Action NumberChanged;
 
-    public void OnEnable()
+    private void OnEnable()
     {
         _inputHandler.Clicked += ToggleCounting;
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
         _inputHandler.Clicked -= ToggleCounting;
     }
