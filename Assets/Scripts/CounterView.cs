@@ -16,7 +16,6 @@ public class CounterView : MonoBehaviour
 
     public void DisplayNumber()
     {
-        int number = _counter.Number;
-        Debug.Log(number);
+        Debug.Log(_counter.Number);
     }
 }

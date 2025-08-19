@@ -37,24 +37,23 @@ public class Counter : MonoBehaviour
 
     private void StartCounting()
     {
-        _countingCoroutine = StartCoroutine(CountCoroutine());
         _isCouning = true;
+        _countingCoroutine = StartCoroutine(CountCoroutine());
     }
 
     private void StopCounting()
     {
-        StopCoroutine(_countingCoroutine);
         _isCouning = false;
+        StopCoroutine(_countingCoroutine);
     }
 
-    private IEnumerator CountCoroutine(int start = 0)
+    private IEnumerator CountCoroutine()
     {
-        for (int i = start; i < int.MaxValue; i++)
+        while (_isCouning)
         {
             Number++;
+            NumberChanged?.Invoke();
             yield return new WaitForSeconds(_delay);
         }
-
-        NumberChanged?.Invoke();
     }
 }
