@@ -10,7 +10,7 @@ public class Counter : MonoBehaviour
     private Coroutine _countingCoroutine;
     private bool _isCouning = false;
 
-    public int Number { get; private set; }
+    private int _number;
     public event Action<int> NumberChanged;
 
     private void OnEnable()
@@ -53,7 +53,7 @@ public class Counter : MonoBehaviour
 
         while (_isCouning)
         {
-            NumberChanged?.Invoke(Number++);
+            NumberChanged?.Invoke(_number++);
             yield return wait;
         }
     }
