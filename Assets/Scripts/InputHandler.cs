@@ -5,18 +5,11 @@ public class InputHandler : MonoBehaviour
 {
     [SerializeField] private Counter _counter;
 
-    private void OnEnable()
+    private void Update()
     {
-        _counter.NumberChanging += MouseButtonDown;
-    }
-
-    private void OnDisable()
-    {
-        _counter.NumberChanging -= MouseButtonDown;
-    }
-
-    public void MouseButtonDown()
-    {
-        Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonDown(0))
+        {
+            _counter.ToggleCounting();
+        }
     }
 }
